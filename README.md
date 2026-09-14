@@ -18,7 +18,7 @@ The public/open-distribution widget is intentionally different from AquaVaults' 
 
 - It can be embedded on arbitrary **HTTPS** sites. `localhost` and `127.0.0.1` are supported for development.
 - It uses `https://aquavaults.com` as its production API backend.
-- It does **not** create AquaVaults Rewards surface evidence and public-SDK swaps do **not** earn AquaVaults Rewards points.
+- Swaps made through the AquaVaults Public Swap Widget are **not eligible for AquaVaults Rewards**.
 - The swap fee opens at **1% and is always user-adjustable** in the public widget.
 - A host site cannot lock the public-SDK fee or replace the 1% opening default through config.
 - The selected community can be configured and may be locked by the host.
