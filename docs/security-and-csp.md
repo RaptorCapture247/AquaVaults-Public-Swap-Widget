@@ -45,4 +45,3 @@ Do not auto-retry when the wallet reports a user rejection.
 ## Integration origin
 
 AquaVaults may record the website origin associated with Public Swap Widget activity for attribution and reporting. Use the widget from the real site origin you intend to operate.
-
