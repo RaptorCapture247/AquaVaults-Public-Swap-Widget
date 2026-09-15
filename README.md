@@ -1,67 +1,224 @@
-# AquaVaults Public Swap Widget — Integration Examples
+# AquaVaults Public Swap Widget
 
-This repository contains copy/paste examples and integration documentation for the **AquaVaults public Solana swap widget**.
+Add the AquaVaults Solana swap widget to any website with a few lines of HTML.
 
-The SDK itself is served by AquaVaults:
+The public widget is served directly by AquaVaults:
 
 ```html
 <script src="https://aquavaults.com/sdk/aquavaults-sdk-open.js"></script>
 ```
 
-No npm package, AquaVaults API key, per-domain allowlist, or separate Solana web3 script is required for the public widget.
+No npm package, AquaVaults API key, per-domain approval, or separate Solana web3 script is required.
 
-> This repository is an integration/examples repository. It does **not** contain the AquaVaults SDK source code.
+## Live Examples
 
-## Important public-SDK rules
+**Live examples site:**  
+https://raptorcapture247.github.io/AquaVaults-Public-Swap-Widget/
 
-The public/open-distribution widget is intentionally different from AquaVaults' approved community SDK integrations:
+> **Live mainnet warning:** The example widgets connect to Solana mainnet and can perform real swaps with real assets. Always review transaction details in your wallet before signing.
 
-- It can be embedded on arbitrary **HTTPS** sites. `localhost` and `127.0.0.1` are supported for development.
-- It uses `https://aquavaults.com` as its production API backend.
-- Swaps made through the AquaVaults Public Swap Widget are **not eligible for AquaVaults Rewards**.
-- The swap fee opens at **1% and is always user-adjustable** in the public widget.
-- A host site cannot lock the public-SDK fee or replace the 1% opening default through config.
-- The selected community can be configured and may be locked by the host.
-- The public widget exposes manual Solana swaps only. It does not expose AquaVaults AutoSwap, Trigger/limit-order, EVM, admin, or Rewards-only functionality.
+---
 
-## Start here
+## Quick Start — Add the Widget to Your Website
 
-| Goal | Guide | Live example source |
-| --- | --- | --- |
-| Widget with its own wallet-connect UI | [Built-in wallet](docs/built-in-wallet.md) | [examples/built-in-wallet.html](examples/built-in-wallet.html) |
-| Use a wallet connection your site already owns | [Existing wallet](docs/existing-wallet.md) | [examples/existing-wallet.html](examples/existing-wallet.html) |
-| Customize colors and sizing | [Styling](docs/styling.md) | [examples/custom-theme.html](examples/custom-theme.html) |
-| Create token buy/sell links | [Deep links](docs/deep-links.md) | [examples/deep-links.html](examples/deep-links.html) |
-| Control the widget from page JavaScript | [Runtime API](docs/runtime-api.md) | [examples/runtime-controls.html](examples/runtime-controls.html) |
+You only need three things:
 
-Full option reference: [docs/configuration.md](docs/configuration.md)
+1. Load the AquaVaults Public Swap Widget script.
+2. Add a `<div>` where you want the widget to appear.
+3. Mount the widget after that `<div>` exists.
 
-Callbacks/events: [docs/callbacks.md](docs/callbacks.md)
+### 1. Load the widget
 
-CSP, HTTPS, and deployment notes: [docs/security-and-csp.md](docs/security-and-csp.md)
+Add this inside your page `<head>`:
 
-Troubleshooting: [docs/troubleshooting.md](docs/troubleshooting.md)
+```html
+<script src="https://aquavaults.com/sdk/aquavaults-sdk-open.js"></script>
+```
 
-## Smallest working example
+No separate Solana web3.js script is required.
+
+### 2. Add the widget container
+
+Put this exactly where you want the swap widget to appear on your page:
 
 ```html
 <div id="swap-widget"></div>
+```
 
-<script src="https://aquavaults.com/sdk/aquavaults-sdk-open.js"></script>
+### 3. Mount the widget
+
+Add this near the bottom of your page, before `</body>`:
+
+```html
 <script>
-  const swapper = AquaVaultsSDK.mount('#swap-widget', {
-    apiBase: 'https://aquavaults.com',
-    community: 'aquavaults',
-    lockCommunity: false,
-    defaultFrom: 'So11111111111111111111111111111111111111112',
-    defaultTo: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
+  AquaVaultsSDK.mount('#swap-widget', {
+    apiBase: 'https://aquavaults.com'
   });
 </script>
 ```
 
-The SDK automatically injects its widget CSS and, when no external adapter is supplied, provides built-in browser-wallet selection for **Phantom, Solflare, and Backpack**.
+### Complete minimal example
 
-## Repository layout
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://aquavaults.com/sdk/aquavaults-sdk-open.js"></script>
+</head>
+
+<body>
+
+  <div id="swap-widget"></div>
+
+  <script>
+    AquaVaultsSDK.mount('#swap-widget', {
+      apiBase: 'https://aquavaults.com'
+    });
+  </script>
+
+</body>
+</html>
+```
+
+That's it.
+
+The widget will load with its default settings and built-in wallet connection.
+
+If you want to customize the widget, set a community, change the default token pair, use your site's existing wallet connection, add deep links, change the widget appearance, or use runtime controls, continue into the guides below.
+
+---
+
+## Customize the Widget
+
+- [Built-in wallet connection](docs/built-in-wallet.md)
+- [Use your website's existing wallet connection](docs/existing-wallet.md)
+- [Configuration options](docs/configuration.md)
+- [Styling and colors](docs/styling.md)
+- [Deep links](docs/deep-links.md)
+- [Runtime API](docs/runtime-api.md)
+- [Callbacks](docs/callbacks.md)
+- [Security and CSP](docs/security-and-csp.md)
+- [Troubleshooting](docs/troubleshooting.md)
+
+---
+
+## Public Widget Behavior
+
+The AquaVaults Public Swap Widget is intended for public website integrations.
+
+- It can be embedded on arbitrary HTTPS websites.
+- `localhost` and `127.0.0.1` are supported for development.
+- No AquaVaults API key or private backend credential is required.
+- The public widget opens with a 1% swap fee.
+- The user can always adjust the swap fee.
+- The embedding website cannot lock or override the public widget's opening fee.
+- The selected community may be configured and optionally locked by the host website.
+- Swaps made through the AquaVaults Public Swap Widget are **not eligible for AquaVaults Rewards**.
+- The public widget is for manual Solana swaps.
+
+If your project later becomes an approved AquaVaults integration and you want widget swaps to participate in the approved Rewards flow, the integration must be moved from the public widget path to the approved SDK path.
+
+---
+
+## Built-In Wallet Connection
+
+If your site does not already have its own Solana wallet connection, the public widget can provide the wallet connection UI for you.
+
+The built-in flow supports:
+
+- Phantom
+- Solflare
+- Backpack
+
+See:
+
+[Built-in wallet connection guide](docs/built-in-wallet.md)
+
+---
+
+## Already Have a Wallet Connection?
+
+If your website already connects the user's Solana wallet, you can use that existing wallet connection instead of showing the widget's built-in Connect Wallet button.
+
+See:
+
+[Existing wallet integration guide](docs/existing-wallet.md)
+
+---
+
+## Deep Links
+
+You can create links that automatically preload a token into the embedded widget.
+
+### Preload a buy token
+
+```text
+https://your-site.example/swap?av_buy=TOKEN_MINT
+```
+
+### Preload a sell token
+
+```text
+https://your-site.example/swap?av_sell=TOKEN_MINT
+```
+
+See the full guide:
+
+[Deep links](docs/deep-links.md)
+
+---
+
+## Styling
+
+The widget can be styled to better match your website using AquaVaults CSS variables.
+
+Example:
+
+```css
+#swap-widget {
+  --av-accent: #00c2a8;
+  --av-border: #00c2a8;
+  --av-radius: 16px;
+}
+```
+
+See:
+
+[Styling and colors](docs/styling.md)
+
+---
+
+## Examples
+
+The repository includes complete standalone HTML examples that can be opened directly in a browser or inspected in an editor.
+
+- [Built-in wallet example](examples/built-in-wallet.html)
+- [Existing wallet example](examples/existing-wallet.html)
+- [Custom theme example](examples/custom-theme.html)
+- [Deep-link example](examples/deep-links.html)
+- [Runtime controls example](examples/runtime-controls.html)
+
+Live versions are available at:
+
+https://raptorcapture247.github.io/AquaVaults-Public-Swap-Widget/
+
+---
+
+## JavaScript Snippets
+
+Small copy/paste snippets are also available:
+
+- [Basic mount](snippets/basic-mount.js)
+- [External wallet adapter](snippets/external-wallet-adapter.js)
+- [Callbacks](snippets/callbacks.js)
+- [Runtime controls](snippets/runtime-controls.js)
+
+---
+
+## Repository Structure
 
 ```text
 .
@@ -90,27 +247,63 @@ The SDK automatically injects its widget CSS and, when no external adapter is su
     └── runtime-controls.js
 ```
 
-## GitHub Pages
+---
 
-All example files are plain static HTML. GitHub Pages can serve this repository directly without a build step.
+## Security
 
-A simple setup is:
+Never place API keys, wallet private keys, seed phrases, signing keys, backend credentials, or other secrets in widget configuration or frontend JavaScript.
 
-1. Create a public GitHub repository.
-2. Upload/commit these files.
-3. Open **Settings → Pages**.
-4. Choose **Deploy from a branch**.
-5. Select `main` and `/ (root)`.
-6. Save.
+The AquaVaults Public Swap Widget does not require private AquaVaults, Jupiter, or RPC-provider credentials from the integrating website.
 
-The root `index.html` links to the example pages.
+See:
 
-## Version note
+[Security and CSP](docs/security-and-csp.md)
 
-The public bundle currently exposes `AquaVaultsSDK.version` and the current SDK reports `1.0.0`.
+---
+
+## Notes for Developers
+
+- Use the exact production SDK URL shown in this README.
+- Use lowercase AquaVaults community IDs.
+- Use the exact Solana mint address when configuring project tokens.
+- Keep the mount code after the widget container exists in the page.
+- Use HTTPS for production integrations.
+- Use the documented CSS variables rather than depending on internal widget class names.
+
+---
+
+## SDK Version
+
+The public bundle currently exposes:
+
+```js
+AquaVaultsSDK.version
+```
+
+The current SDK reports:
+
+```text
+1.0.0
+```
 
 The hosted script URL is not an immutable versioned artifact path, so test your integration after SDK updates.
 
-## Licensing
+---
 
-No license file is included in this starter repository. Choose the license for this **documentation/example-code repository** before publishing if you want to grant explicit reuse rights. That choice is separate from the license or distribution terms of the AquaVaults SDK itself.
+## License
+
+No license file is included in this repository yet.
+
+If a license is added later, it should apply to the documentation and example code in this repository only unless explicitly stated otherwise. It should not be interpreted as granting a license to the hosted AquaVaults SDK itself.
+
+---
+
+## AquaVaults
+
+Website:
+
+https://aquavaults.com
+
+Public Swap Widget repository:
+
+https://github.com/RaptorCapture247/AquaVaults-Public-Swap-Widget
