@@ -50,7 +50,7 @@ Do **not** add a separate `@solana/web3.js` script for this mode. The public bun
 
 ## Public fee behavior
 
-Do not add `settings.fee` expecting to control the public widget. In the public/open-distribution build:
+Do not add `settings.fee` expecting to control the public widget. In the AquaVaults Public Swap Widget:
 
 - opening fee = 1%
 - fee is always user-adjustable

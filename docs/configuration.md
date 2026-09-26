@@ -27,7 +27,7 @@ const swapper = AquaVaultsSDK.mount('#swap-widget', {
 
 ## Public fee configuration is intentionally not host-controlled
 
-The open-distribution bundle overwrites host-provided fee settings with:
+The AquaVaults Public Swap Widget overrides host-provided fee settings with:
 
 ```text
 opening fee: 1%
@@ -54,16 +54,6 @@ priority: { locked: true }
 ```
 
 the SDK forces both to remain user-adjustable.
-
-## Options that should not be relied on
-
-The current source accepts some fields that are not meaningful public customization controls:
-
-- `wallet.autoConnect` is parsed but currently has no runtime behavior in the widget.
-- `showSettingsPanel` is forced on.
-- `theme: 'light'` is not a complete supported light theme in V1.
-
-This repository intentionally does not present those as supported customization features.
 
 ## Common token mints
 

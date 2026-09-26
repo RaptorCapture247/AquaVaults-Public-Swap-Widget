@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AquaVaults Public SDK — Deep Link Example</title>
+  <title>AquaVaults Public Swap Widget — Deep Link Example</title>
   <script src="https://aquavaults.com/sdk/aquavaults-sdk-open.js"></script>
 
   <style>
@@ -55,6 +55,13 @@
 </head>
 <body>
   <main class="page">
+    <div class="panel">
+      <strong>Live mainnet example.</strong>
+      <p>
+        This widget connects to Solana mainnet and can perform real swaps with
+        real assets. Review the transaction details in your wallet before signing.
+      </p>
+    </div>
     <div class="layout">
       <section>
         <h1>Deep links</h1>
@@ -64,7 +71,7 @@
         </p>
 
         <div class="panel">
-          <button id="buy-usdc">Open with USDC as buy token</button>
+          <button id="buy-usdt">Open with USDT as buy token</button>
           <button id="sell-usdc">Open with USDC as sell token</button>
         </div>
 
@@ -84,6 +91,7 @@
   <script>
     const SOL  = 'So11111111111111111111111111111111111111112';
     const USDC = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
+    const USDT = 'Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB';
 
     AquaVaultsSDK.mount('#swap-widget', {
       apiBase: 'https://aquavaults.com',
@@ -91,10 +99,10 @@
       defaultTo: USDC,
     });
 
-    document.getElementById('buy-usdc').onclick = () => {
+    document.getElementById('buy-usdt').onclick = () => {
       const url = new URL(window.location.href);
       url.search = '';
-      url.searchParams.set('av_buy', USDC);
+      url.searchParams.set('av_buy', USDT);
       window.location.href = url.toString();
     };
 

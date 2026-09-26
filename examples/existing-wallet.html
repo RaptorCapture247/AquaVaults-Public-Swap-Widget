@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AquaVaults Public SDK — Existing Wallet Example</title>
+  <title>AquaVaults Public Swap Widget — Existing Wallet Example</title>
   <script src="https://aquavaults.com/sdk/aquavaults-sdk-open.js"></script>
 
   <style>
@@ -55,9 +55,16 @@
 </head>
 <body>
   <main class="page">
+    <div class="panel">
+      <strong>Live mainnet example.</strong>
+      <p>
+        This widget connects to Solana mainnet and can perform real swaps with
+        real assets. Review the transaction details in your wallet before signing.
+      </p>
+    </div>
     <div class="layout">
       <section>
-        <h1>Public SDK — use the host site's wallet</h1>
+        <h1>Public Swap Widget — use the host site's wallet</h1>
         <p>
           This demo treats Phantom as the wallet connection owned by the host
           page. In a real application, replace <code>provider</code> with the

@@ -18,6 +18,8 @@ connect-src 'self' https://aquavaults.com;
 img-src 'self' data: https:;
 ```
 
+The repository examples use inline `<script>` blocks for readability. If your site enforces a `script-src` policy that blocks inline scripts, move the AquaVaults mount/configuration code into a same-origin JavaScript file or authorize that specific script with your existing CSP nonce/hash strategy. Do not weaken your site's CSP just to embed the widget.
+
 Merge these sources into your existing policy rather than replacing your site's CSP wholesale.
 
 Why `img-src ... https:`? Token metadata can contain HTTPS image URLs from multiple token/project hosts.

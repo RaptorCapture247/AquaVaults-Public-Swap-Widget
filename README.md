@@ -102,6 +102,7 @@ If you want to customize the widget, set a community, change the default token p
 - [Callbacks](docs/callbacks.md)
 - [Security and CSP](docs/security-and-csp.md)
 - [Troubleshooting](docs/troubleshooting.md)
+- [Upgrading to an approved integration](docs/upgrading-to-approved.md)
 
 ---
 
@@ -119,7 +120,7 @@ The AquaVaults Public Swap Widget is intended for public website integrations.
 - Swaps made through the AquaVaults Public Swap Widget are **not eligible for AquaVaults Rewards**.
 - The public widget is for manual Solana swaps.
 
-If your project later becomes an approved AquaVaults integration and you want widget swaps to participate in the approved Rewards flow, the integration must be moved from the public widget path to the approved SDK path.
+If your project later becomes an approved AquaVaults integration and you want widget swaps to participate in the approved Rewards flow, see [Upgrading to an approved integration](docs/upgrading-to-approved.md).
 
 ---
 
@@ -274,27 +275,29 @@ See:
 
 ## SDK Version
 
-The public bundle currently exposes:
+The loaded public bundle exposes its current version at runtime:
 
 ```js
-AquaVaultsSDK.version
+console.log(AquaVaultsSDK.version);
 ```
 
-The current SDK reports:
+The hosted script URL is updated in place, so test your integration after SDK updates.
 
-```text
-1.0.0
-```
+---
 
-The hosted script URL is not an immutable versioned artifact path, so test your integration after SDK updates.
+## Support and Security Reports
+
+For documentation problems, integration questions, or reproducible example issues, use the repository's GitHub Issues.
+
+For suspected security vulnerabilities, **do not publish exploit details in a public Issue**. See [SECURITY.md](SECURITY.md) for the private reporting path.
 
 ---
 
 ## License
 
-No license file is included in this repository yet.
+The documentation and example code in this repository are licensed under the [MIT License](LICENSE).
 
-If a license is added later, it should apply to the documentation and example code in this repository only unless explicitly stated otherwise. It should not be interpreted as granting a license to the hosted AquaVaults SDK itself.
+This license applies to the files contained in this repository. It does not grant a license to the hosted AquaVaults SDK or to AquaVaults backend services unless explicitly stated otherwise.
 
 ---
 

@@ -10,7 +10,7 @@ Confirm this loads before your mount code:
 
 ## `solanaWeb3 not available`
 
-The current public open-distribution bundle is standalone and should not require a host `solanaWeb3`.
+The current AquaVaults Public Swap Widget bundle is standalone and should not require a host `solanaWeb3`.
 
 If you see this with `aquavaults-sdk-open.js`, first hard-refresh and confirm the browser is not serving an old cached bundle.
 
